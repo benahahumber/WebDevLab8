@@ -15,9 +15,15 @@
         crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+
+    </style>
+
 </head>
 
 <body>
+
 
     <div id="map" style="height: 100vh;"></div>
 
@@ -45,7 +51,7 @@
         var iss = L.marker([0, 0], { icon: myIcon }).addTo(map);
 
         function moveISS() {
-            
+
             $.getJSON('http://api.open-notify.org/iss-now.json?callback=?', function (data) {
                 var lat = parseFloat(data['iss_position']['latitude']);
                 var lon = parseFloat(data['iss_position']['longitude']);
