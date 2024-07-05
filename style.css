@@ -39,6 +39,10 @@ header {
     header p {
         font-size: 1em;
     }
+
+    header ul {
+        font-size: 1em;
+    }
 }
 
 @media (max-width: 480px) {
@@ -54,4 +58,18 @@ header {
     header p {
         font-size: 0.9em; 
     }
+
+    header ul{
+        font-size: 0.9em;
+    }
+}
+
+ul {
+    list-style: none;
+    color: white;
+}
+
+
+h2 {
+    color: white;
 }
