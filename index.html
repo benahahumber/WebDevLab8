@@ -28,9 +28,34 @@
             maxZoom: 10,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
-    </script>
 
+        var myIcon = L.icon({
+            iconUrl: 'ISS.png',
+            iconSize: [95, 50],
+            iconAnchor: [22, 94],
+            popupAnchor: [-3, -76],
+            shadowUrl: 'my-icon-shadow.png',
+            shadowSize: [68, 95],
+            shadowAnchor: [22, 94]
+        });
+
+        L.marker([51.505, -0.09], {icon: myIcon}).addTo(map);
+
+        function moveISS() {
+            $.getJSON('http://api.open-notify.org/iss-now.json?callback=?', function (data) {
+                var lat = data['iss_position']['latitude'];
+                var lon = data['iss_position']['longitude'];
+
+                // See leaflet docs for setting up icons and map layers
+                // The update to the map is done here:
+                iss.setLatLng([lat, lon]);
+                isscirc.setLatLng([lat, lon]);
+                map.panTo([lat, lon], animate = true);
+            });
+            setTimeout(moveISS, 5000);
+        }
+
+    </script>
 </body>
 
 </html>
-
