@@ -15,34 +15,43 @@
         crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-    <style>
-
-    </style>
-
+    <!-- This api needs jquery to work, google hosts jquery. I still dont know what it does or what the fuck that means-->
 </head>
 
 
 <body>
-
-
     <!--This took for fucking ever-->
-
+    <!--Adds map to body of HTML-->
+    <header>
+        <center>
+            <h1>
+                International Space Station Live
+            </h1>
+            <h3>
+                The ISS travels at about 17,500 miles/28,000 kilometers per hour. At this speed, the ISS orbits the
+                Earth every 90 minutes, which gives the crew 16 sunrises and sunsets every day.
+            </h3>
+            <h3>
+                This website shows the current location of the ISS in real time! Updated every 5 seconds.
+            </h3>
+        </center>
+    </header>
     <div id="map" style="height: 100vh;"></div>
 
     <script>
 
-
+        // Declares and inzalizes map 
         var map = L.map('map', {
             center: [0, 0],
             zoom: 3
         });
-
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // Adds the stle and look of the map not 100% sure how it works it was just in the documentaion 
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { //the link refrences the style of the map that I want to use
             maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>' //api I call I think 
         }).addTo(map);
 
+        // variable to store Icon data
         var myIcon = L.icon({
             iconUrl: 'ISS.png',
             iconSize: [50, 32],
@@ -50,9 +59,10 @@
             popupAnchor: [-3, -76]
         });
 
-
+        //adds a marker to the map using the image I have of the ISS station
         var iss = L.marker([0, 0], { icon: myIcon }).addTo(map);
 
+        //api function to move the marker depending on the current location of the ISS station from 'open notify' api
         function moveISS() {
 
             $.getJSON('http://api.open-notify.org/iss-now.json?callback=?', function (data) {
@@ -65,6 +75,7 @@
             setTimeout(moveISS, 5000);
         }
 
+        //calls function 
         moveISS();
     </script>
 </body>
