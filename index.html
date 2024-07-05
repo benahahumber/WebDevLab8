@@ -39,9 +39,6 @@
     <section>
         <div id="map" style="height: 60vh;"></div>
     </section>
-
-
-
     <div style="background-color: #000000; height:30%; padding-top:1%;">
         <center>
             <h2>
@@ -50,9 +47,7 @@
             <ul id="astronames"></ul>
         </center>
     </div>
-
     <script>
-
         // Declares and inzalizes map 
         var map = L.map('map', {
             center: [0, 0],
@@ -87,7 +82,6 @@
             });
             setTimeout(moveISS, 5000);
         }
-
         $.getJSON('http://api.open-notify.org/astros.json?callback=?', function (data) {
             var number = data['number'];
             $('#spacepeeps').html(number);
@@ -96,7 +90,6 @@
                 $('#astronames').append('<li>' + d['name'] + '</li>');
             });
         });
-
         //calls function 
         moveISS();
     </script>
